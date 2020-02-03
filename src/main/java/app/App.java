@@ -20,7 +20,5 @@ public class App {
         Skuperfield skuperfield = new Skuperfield(notMoving, lookingAtSubject, lookingAtBeing);
         System.out.println(skuperfield.getAbilities());
         System.out.println(skuperfield.doAction("LookingAtBeing"));
-
-
     }
 }

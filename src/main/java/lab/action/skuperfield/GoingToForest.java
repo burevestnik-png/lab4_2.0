@@ -2,14 +2,14 @@ package lab.action.skuperfield;
 
 import lab.action.Action;
 
-public class PainDissapearing extends Action {
+public class GoingToForest extends Action {
     @Override
     public String execute() {
-        return "исчезла боль";
+        return "ходить в лес";
     }
 
     @Override
     public String getDescription() {
-        return "Может исчезнуть боль.";
+        return "Может ходить в лес.";
     }
 }
