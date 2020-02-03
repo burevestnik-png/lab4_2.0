@@ -21,6 +21,10 @@ public abstract class Subject {
         this.actions.addAll(Arrays.asList(actions));
     }
 
+    public Subject(List<Action> list) {
+        actions = list;
+    }
+
     public Subject() {}
 
     //TODO: сделать что-то с That subject

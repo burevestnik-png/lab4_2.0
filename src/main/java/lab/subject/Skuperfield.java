@@ -13,4 +13,11 @@ public class Skuperfield extends Subject implements Seatable {
     public Skuperfield(Action... actions) throws NoActionsException {
         super(actions);
     }
+
+    public Skuperfield(List<Action> list) {
+        super(list);
+    }
+
+    public Skuperfield() {
+    }
 }
