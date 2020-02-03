@@ -21,6 +21,8 @@ public abstract class Subject {
         this.actions.addAll(Arrays.asList(actions));
     }
 
+    public Subject() {}
+
     //TODO: сделать что-то с That subject
     public String doAction(String name) throws NoSuchActionException {
         for (Action action : actions) {
