@@ -2,6 +2,8 @@ package lab.action;
 
 public abstract class Action {
     public abstract String execute();
+    //TODO: ПЕРЕДЕЛАТЬ
+    //public abstract String execute(Subject subject);
     public abstract String getDescription();
 
     @Override

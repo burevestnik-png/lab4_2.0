@@ -36,16 +36,13 @@ public class Creator {
         {
             //TODO: какое имя объектной переменной?
             try {
-                SittingOnSubject sittingOnTree = (SittingOnSubject) createSittingOnTree();
-                SittingOnSubject sittingOnGround = (SittingOnSubject) createSittingOnGround();
-
                 add(new FlyingAway());
                 add(new FlyingNearSubject(serviceInit.get("Tree")));
                 add(new LookingToSides());
                 //add(new PeckingFood());
                 add(new ShakingHead());
-                add(sittingOnTree);
-                add(sittingOnGround);
+                add(new SittingOnSubject(serviceInit.get("Tree")));
+                add(new SittingOnSubject(serviceInit.get("Ground")));
                 add(new StopBeingAfraid());
                 //add(new ThinkingNotAlive());
                 //add(new TouchingSubject());
@@ -131,11 +128,4 @@ public class Creator {
         return new Ground();
     }
 
-    private Action createSittingOnTree() throws NonSeatableSubjectException {
-        return new SittingOnSubject(serviceInit.get("Tree"));
-    }
-
-    private Action createSittingOnGround() throws NonSeatableSubjectException {
-        return new SittingOnSubject(serviceInit.get("Ground"));
-    }
 }
