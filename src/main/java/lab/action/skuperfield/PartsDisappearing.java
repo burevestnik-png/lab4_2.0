@@ -3,10 +3,10 @@ package lab.action.skuperfield;
 import lab.action.Action;
 import lab.enums.PartsOfBody;
 
-public class PartsDissapearing extends Action {
+public class PartsDisappearing extends Action {
     private PartsOfBody part;
 
-    public PartsDissapearing(PartsOfBody part) {
+    public PartsDisappearing(PartsOfBody part) {
         this.part = part;
     }
 

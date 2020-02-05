@@ -3,6 +3,7 @@ package lab.action.bird;
 import lab.ability.Lookable;
 import lab.ability.Seatable;
 import lab.action.Action;
+import lab.exceptions.NoSuchActionException;
 import lab.exceptions.NonSeatableSubjectException;
 import lab.subject.Subject;
 
@@ -23,5 +24,9 @@ public class SittingOnSubject extends Action {
     @Override
     public String getDescription() {
         return "Может сидеть на определенных объектах";
+    }
+
+    public Subject getSubject() {
+        return subject;
     }
 }

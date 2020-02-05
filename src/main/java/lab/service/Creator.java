@@ -8,6 +8,10 @@ import lab.action.tree.Speaking;
 import lab.action.tree.Waving;
 import lab.action.wind.Gusting;
 import lab.action.wind.Stirring;
+import lab.enums.PartsOfBody;
+import lab.exceptions.NonKnownSubjectException;
+import lab.exceptions.NonLookableSubjectException;
+import lab.exceptions.NonSeatableSubjectException;
 import lab.subject.*;
 
 import java.util.ArrayList;
@@ -31,16 +35,24 @@ public class Creator {
     private List<Action> birdActions = new ArrayList<Action>() {
         {
             //TODO: какое имя объектной переменной?
-            add(new FlyingAway());
-            //add(new FlyingNearSubject());
-            add(new LookingToSides());
-            //add(new PeckingFood());
-            add(new ShakingHead());
-            //add(new SittingOnSubject());
-            add(new StopBeingAfraid());
-            //add(new ThinkingNotAlive());
-            //add(new TouchingSubject());
-            add(new Tweeting());
+            try {
+                SittingOnSubject sittingOnTree = (SittingOnSubject) createSittingOnTree();
+                SittingOnSubject sittingOnGround = (SittingOnSubject) createSittingOnGround();
+
+                add(new FlyingAway());
+                add(new FlyingNearSubject(serviceInit.get("Tree")));
+                add(new LookingToSides());
+                //add(new PeckingFood());
+                add(new ShakingHead());
+                add(sittingOnTree);
+                add(sittingOnGround);
+                add(new StopBeingAfraid());
+                //add(new ThinkingNotAlive());
+                //add(new TouchingSubject());
+                add(new Tweeting());
+            } catch (NonSeatableSubjectException e) {
+                e.printStackTrace();
+            }
         }
     };
 
@@ -52,27 +64,32 @@ public class Creator {
 
     private List<Action> skuperfieldActions = new ArrayList<Action>() {
         {
-            add(new Crying());
-            add(new DoNotFeeling());
-            add(new Escaping());
-            add(new ExplainingWhy());
-            add(new GoingNumb());
-            add(new GoingToForest());
-            //add(new HearingSubject());
-            //add(new KnowingSubject());
-            //add(new LookingAtBeing());
-            //add(new LookingAtSubject());
-            add(new MakingSure());
-            add(new Melting());
-            add(new NotGettingFree());
-            add(new NotMoving());
-            add(new PainDissapearing());
-            //add(new PartsDissapearing());
-            add(new SayingEndOfSpeech());
-            add(new SayingInspiringSpeech());
-            add(new Seem());
-            add(new ThinkingAbout());
-            add(new WastingStrength());
+            try {
+                add(new Crying());
+                add(new DoNotFeeling());
+                add(new Escaping());
+                add(new ExplainingWhy());
+                add(new GoingNumb());
+                add(new GoingToForest());
+                //add(new HearingSubject());
+                add(new KnowingSubject(serviceInit.get("Tree")));
+                //add(new LookingAtBeing());
+                add(new LookingAtSubject(serviceInit.get("Flower")));
+                add(new MakingSure());
+                add(new Melting());
+                add(new NotGettingFree());
+                add(new NotMoving());
+                add(new PainDisappearing());
+                add(new PartsDisappearing(PartsOfBody.TORSO));
+                add(new SayingEndOfSpeech());
+                add(new SayingInspiringSpeech());
+                add(new Seem());
+                add(new ThinkingAbout());
+                add(new WastingStrength());
+            } catch (NonKnownSubjectException | NonLookableSubjectException e) {
+                e.printStackTrace();
+                System.out.println("Самсынг вронг");
+            }
         }
     };
 
@@ -112,5 +129,13 @@ public class Creator {
 
     public Subject createGround() {
         return new Ground();
+    }
+
+    private Action createSittingOnTree() throws NonSeatableSubjectException {
+        return new SittingOnSubject(serviceInit.get("Tree"));
+    }
+
+    private Action createSittingOnGround() throws NonSeatableSubjectException {
+        return new SittingOnSubject(serviceInit.get("Ground"));
     }
 }

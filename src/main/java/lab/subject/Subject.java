@@ -1,6 +1,7 @@
 package lab.subject;
 
 import lab.action.Action;
+import lab.action.bird.SittingOnSubject;
 import lab.exceptions.NoActionsException;
 import lab.exceptions.NoSuchActionException;
 
@@ -32,6 +33,17 @@ public abstract class Subject {
         for (Action action : actions) {
             if (name.equals(action.toString())) {
                 return action.execute();
+            }
+        }
+        throw new NoSuchActionException("That subject doesn't have such action.");
+    }
+
+    public String doAction(String name, Subject subject) throws NoSuchActionException {
+        for (Action action : actions) {
+            if (name.equals(action.toString())) {
+                if ((action instanceof SittingOnSubject) && (((SittingOnSubject) action).getSubject().getClass() == subject.getClass())) {
+                    return action.execute();
+                }
             }
         }
         throw new NoSuchActionException("That subject doesn't have such action.");
